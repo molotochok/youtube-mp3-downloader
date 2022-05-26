@@ -1,0 +1,24 @@
+{
+  "name": "youtube-mp3-downloader",
+  "version": "1.0.0",
+  "description": "Allows you to download mp3 from youtube video",
+  "main": "index.js",
+  "scripts": {
+    "download": "node download.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/molotochok/youtube-mp3-downloader.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/molotochok/youtube-mp3-downloader/issues"
+  },
+  "homepage": "https://github.com/molotochok/youtube-mp3-downloader#readme",
+  "dependencies": {
+    "fluent-ffmpeg": "^2.1.2",
+    "ytdl-core": "^4.11.0"
+  }
+}
