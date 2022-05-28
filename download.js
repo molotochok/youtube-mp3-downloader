@@ -12,6 +12,11 @@ const parseArguments = () => {
   };
 };
 
+const buildSaveFilePath = (fileName) => {
+  fileName = fileName.replace(/[^a-z0-9]/gi, '_').toLowerCase();
+  return `./${FOLDER}/${fileName}.mp3`;
+};
+
 const download = async (videoId) => {
   const start = Date.now();
 
@@ -23,9 +28,11 @@ const download = async (videoId) => {
       filter: "audioonly"
   });
 
+  const saveFilePath = buildSaveFilePath(info.videoDetails.title);
+
   ffmpeg(stream)
     .audioBitrate(512)
-    .save(`./${FOLDER}/${info.videoDetails.title}.mp3`)
+    .save(saveFilePath)
     .on('codecData', function(data) {
       console.log("Audio file information:");
       console.log(data);
@@ -38,6 +45,7 @@ const download = async (videoId) => {
     })
     .on('end', () => {
       console.log(`\n\nFinished downloading. Time spent: ${(Date.now() - start) / 1000}s`);
+      console.log(`Music has been saved here: ${saveFilePath}`)
     });
 };
 
