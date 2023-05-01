@@ -1,5 +1,6 @@
 const ytdl = require('ytdl-core');
 const ffmpeg = require('fluent-ffmpeg');
+const fs = require('fs');
 
 const FOLDER = 'music';
 
@@ -27,6 +28,11 @@ const download = async (videoId) => {
       quality: "highestaudio", 
       filter: "audioonly"
   });
+
+  if (!fs.existsSync(FOLDER)){
+    console.warn(`Folder "${FOLDER}" doesn't exist. Creating.`);
+    fs.mkdirSync(FOLDER);
+  }
 
   const saveFilePath = buildSaveFilePath(info.videoDetails.title);
 
